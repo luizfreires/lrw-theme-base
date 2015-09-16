@@ -1,11 +1,9 @@
-LRW Theme base ([Odin](http://wpod.in/))
+LRW Theme base
 ==============
 
-WordPress Theme base to start projects
+WordPress Theme base to start projects. This is a project based entirely on ([Odin Framework](http://wpod.in/)), theme developed by [WordPress Brasil Group](https://www.facebook.com/groups/wordpress.brasil).
 
 <h2>Description</h2>
-
-This project is a fork of [Odin](http://wpod.in/), theme developed by [WordPress Brasil Group](https://www.facebook.com/groups/wordpress.brasil).
 
 A WordPress Theme base to assist in developing personal projects.  I added some basic functions for the projects that I develop with the agency and through freelancers:
 
