@@ -86,13 +86,7 @@ class Odin_Widget_Social extends WP_Widget {
 			$iconlower	= strtolower( $this->services[$name] );
 			$iconfont 	= preg_replace( '/\s+/', '-', $iconlower );
 
-			if ( $iconfont == 'vimeo' ) {
-				$iconfont = $iconfont . '-square';
-			} else {
-				$iconfont = $iconfont;
-			}
-
-			echo '<li><a href="' . $link . '" title="' . $icontitle . '"><i class="fa fa-' . $iconfont . '"></i></a></li>';
+			echo '<li class="btn btn-lg"><a href="' . $link . '" title="' . $icontitle . '"><i class="fa fa-' . $iconfont . '"></i></a></li>';
 		endforeach;
 
 		echo '</ul>';

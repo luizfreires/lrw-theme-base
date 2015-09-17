@@ -33,7 +33,7 @@ require_once get_template_directory() . '/core/classes/class-thumbnail-resizer.p
 require_once get_template_directory() . '/core/classes/widgets/class-widget-contact.php';
 require_once get_template_directory() . '/core/classes/widgets/class-widget-embed.php';
 require_once get_template_directory() . '/core/classes/widgets/class-widget-excerpt-page.php';
-require_once get_template_directory() . '/core/classes/widgets/class-widget-latest-post.php';
+require_once get_template_directory() . '/core/classes/widgets/class-widget-latest-posts.php';
 require_once get_template_directory() . '/core/classes/widgets/class-widget-like-box.php';
 require_once get_template_directory() . '/core/classes/widgets/class-widget-social.php';
 require_once get_template_directory() . '/core/classes/widgets/class-widget-twitter.php';

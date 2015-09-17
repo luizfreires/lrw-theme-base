@@ -47,17 +47,13 @@ class Odin_Widget_Embed extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
-        echo wp_oembed_get( $embed, array( 'width' => 'full', 'height' => $height ) );
+        echo '<p>' . wp_oembed_get( $embed, array( 'width' => 'full', 'height' => $height ) ) . '</p>';
 
-		echo ( ! empty( $desc ) ) ? '<p>' . $desc . '</p>' : '';
+		echo ( ! empty( $desc ) ) ? '<p class="entry-caption"><em>' . $desc . '</em></p>' : '';
 
-		if ( $show_url == 1 ) :
+		if ( ( $show_url == 1 ) && ( ! empty( $url ) ) ) :
 
-			if ( ! empty( $url ) ) :
-
-				echo '<div class="entry-caption"><em><a href="' . $url . '" title="' . ( ! empty( $text_channel ) ) ? $text_channel : _e( 'Visit our videos', 'odin' ) . '" target="_blank">' . ( ! empty( $text_channel ) ) ? $text_channel : _e( 'Visit our videos', 'odin' ) .  '</a></em></div>';
-
-			endif;
+			echo '<p><a href="' . $url . '" title="' . ( ( ! empty( $text_channel ) ) ? $text_channel : __( 'Visit our videos', 'odin' ) ) . '" target="_blank">' . ( ( ! empty( $text_channel ) ) ? $text_channel : __( 'Visit our videos', 'odin' ) ) .  '</a></p>';
 
 		endif;
 

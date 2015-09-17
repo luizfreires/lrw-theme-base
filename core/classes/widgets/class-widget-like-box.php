@@ -35,12 +35,12 @@ class Odin_Widget_Like_Box extends WP_Widget {
 		$title         = isset( $instance['title'] ) ? $instance['title'] : '';
 		$url           = isset( $instance['url'] ) ? $instance['url'] : '';
 		$width         = isset( $instance['width'] ) ? $instance['width'] : 300;
-		$height        = isset( $instance['height'] ) ? $instance['height'] : 500;
-		$color_scheme  = isset( $instance['color_scheme'] ) ? $instance['color_scheme'] : 'light';
-		$friends_faces = isset( $instance['friends_faces'] ) ? $instance['friends_faces'] : 1;
-		$show_posts    = isset( $instance['show_posts'] ) ? $instance['show_posts'] : 0;
-		$show_header   = isset( $instance['show_header'] ) ? $instance['show_header'] : 0;
-		$show_border   = isset( $instance['show_border'] ) ? $instance['show_border'] : 0;
+		$height        = isset( $instance['height'] ) ? $instance['height'] : '';
+		$small_header  = isset( $instance['small_header'] ) ? $instance['small_header'] : 'true';
+		$adapt_width   = isset( $instance['adapt_width'] ) ? $instance['adapt_width'] : 'false';
+		$hide_cover    = isset( $instance['hide_cover'] ) ? $instance['hide_cover'] : 'false';
+		$friends_faces = isset( $instance['friends_faces'] ) ? $instance['friends_faces'] : 'true';
+		$show_posts    = isset( $instance['show_posts'] ) ? $instance['show_posts'] : 'false';
 
 		?>
 		<p>
@@ -68,32 +68,48 @@ class Odin_Widget_Like_Box extends WP_Widget {
 			</label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'color_scheme' ); ?>">
-				<?php _e( 'Color Scheme:', 'odin' ); ?>
-				<select id="<?php echo $this->get_field_id( 'color_scheme' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'color_scheme' ); ?>">
-					<option value="dark" <?php selected( 'dark', $color_scheme, true ); ?>><?php _e( 'Dark', 'odin' ); ?></option>
-					<option value="light" <?php selected( 'light', $color_scheme, true ); ?>><?php _e( 'Light', 'odin' ); ?></option>
+			<label for="<?php echo $this->get_field_id( 'small_header' ); ?>">
+				<?php _e( 'Small Header:', 'odin' ); ?>
+				<select id="<?php echo $this->get_field_id( 'small_header' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'small_header' ); ?>">
+					<option value="true" <?php selected( 'true', $small_header, true ); ?>><?php _e( 'True', 'odin' ); ?></option>
+					<option value="false" <?php selected( 'false', $small_header, true ); ?>><?php _e( 'False', 'odin' ); ?></option>
+				</select>
+			</label>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'adapt_width' ); ?>">
+				<?php _e( 'Adaptive width:', 'odin' ); ?>
+				<select id="<?php echo $this->get_field_id( 'adapt_width' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'adapt_width' ); ?>">
+					<option value="true" <?php selected( 'true', $adapt_width, true ); ?>><?php _e( 'True', 'odin' ); ?></option>
+					<option value="false" <?php selected( 'false', $adapt_width, true ); ?>><?php _e( 'False', 'odin' ); ?></option>
 				</select>
 			</label>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'friends_faces' ); ?>">
-				<input id="<?php echo $this->get_field_id( 'friends_faces' ); ?>" name="<?php echo $this->get_field_name( 'friends_faces' ); ?>" type="checkbox" value="1" <?php checked( 1, $friends_faces, true ); ?> /> <?php _e( 'Show Friends Faces', 'odin' ); ?>
+				<?php _e( 'Show Friends Faces:', 'odin' ); ?>
+				<select id="<?php echo $this->get_field_id( 'friends_faces' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'friends_faces' ); ?>">
+					<option value="true" <?php selected( 'true', $friends_faces, true ); ?>><?php _e( 'True', 'odin' ); ?></option>
+					<option value="false" <?php selected( 'false', $friends_faces, true ); ?>><?php _e( 'False', 'odin' ); ?></option>
+				</select>
+			</label>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'hide_cover' ); ?>">
+				<?php _e( 'Hide Cover Photo:', 'odin' ); ?>
+				<select id="<?php echo $this->get_field_id( 'hide_cover' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'hide_cover' ); ?>">
+					<option value="true" <?php selected( 'true', $hide_cover, true ); ?>><?php _e( 'True', 'odin' ); ?></option>
+					<option value="false" <?php selected( 'false', $hide_cover, true ); ?>><?php _e( 'False', 'odin' ); ?></option>
+				</select>
 			</label>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'show_posts' ); ?>">
-				<input id="<?php echo $this->get_field_id( 'show_posts' ); ?>" name="<?php echo $this->get_field_name( 'show_posts' ); ?>" type="checkbox" value="1" <?php checked( 1, $show_posts, true ); ?> /> <?php _e( 'Show Posts', 'odin' ); ?>
-			</label>
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'show_header' ); ?>">
-				<input id="<?php echo $this->get_field_id( 'show_header' ); ?>" name="<?php echo $this->get_field_name( 'show_header' ); ?>" type="checkbox" value="1" <?php checked( 1, $show_header, true ); ?> /> <?php _e( 'Show Header', 'odin' ); ?>
-			</label>
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'show_border' ); ?>">
-				<input id="<?php echo $this->get_field_id( 'show_border' ); ?>" name="<?php echo $this->get_field_name( 'show_border' ); ?>" type="checkbox" value="1" <?php checked( 1, $show_border, true ); ?> /> <?php _e( 'Show Border', 'odin' ); ?>
+				<?php _e( 'Show Posts:', 'odin' ); ?>
+				<select id="<?php echo $this->get_field_id( 'show_posts' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'show_posts' ); ?>">
+					<option value="true" <?php selected( 'true', $show_posts, true ); ?>><?php _e( 'True', 'odin' ); ?></option>
+					<option value="false" <?php selected( 'false', $show_posts, true ); ?>><?php _e( 'False', 'odin' ); ?></option>
+				</select>
 			</label>
 		</p>
 		<?php
@@ -114,12 +130,12 @@ class Odin_Widget_Like_Box extends WP_Widget {
 		$instance['title']         = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
 		$instance['url']           = ( ! empty( $new_instance['url'] ) ) ? esc_url( $new_instance['url'] ) : '';
 		$instance['width']         = ( ! empty( $new_instance['width'] ) ) ? intval( $new_instance['width'] ) : 300;
-		$instance['height']        = ( ! empty( $new_instance['height'] ) ) ? intval( $new_instance['height'] ) : 500;
-		$instance['color_scheme']  = ( ! empty( $new_instance['color_scheme'] ) ) ? sanitize_text_field( $new_instance['color_scheme'] ) : 'light';
-		$instance['friends_faces'] = ( ! empty( $new_instance['friends_faces'] ) ) ? intval( $new_instance['friends_faces'] ) : 0;
-		$instance['show_posts']    = ( ! empty( $new_instance['show_posts'] ) ) ? intval( $new_instance['show_posts'] ) : 0;
-		$instance['show_header']   = ( ! empty( $new_instance['show_header'] ) ) ? intval( $new_instance['show_header'] ) : 0;
-		$instance['show_border']   = ( ! empty( $new_instance['show_border'] ) ) ? intval( $new_instance['show_border'] ) : 0;
+		$instance['height']        = ( ! empty( $new_instance['height'] ) ) ? intval( $new_instance['height'] ) : '';
+		$instance['small_header']  = ( ! empty( $new_instance['small_header'] ) ) ? sanitize_text_field( $new_instance['small_header'] ) : 'true';
+		$instance['adapt_width']   = ( ! empty( $new_instance['adapt_width'] ) ) ? sanitize_text_field( $new_instance['adapt_width'] ) : 'false';
+		$instance['hide_cover']    = ( ! empty( $new_instance['hide_cover'] ) ) ? sanitize_text_field( $new_instance['hide_cover'] ) : 'false';
+		$instance['friends_faces'] = ( ! empty( $new_instance['friends_faces'] ) ) ? sanitize_text_field( $new_instance['friends_faces'] ) : 'true';
+		$instance['show_posts']    = ( ! empty( $new_instance['show_posts'] ) ) ? sanitize_text_field( $new_instance['show_posts'] ) : 'false';
 
 		return $instance;
 	}
@@ -140,16 +156,27 @@ class Odin_Widget_Like_Box extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
+		// set location
+		$location = str_replace( '-', '_', get_bloginfo( 'language' ) );
+
 		echo sprintf(
-			'<iframe src="//www.facebook.com/plugins/likebox.php?href=%1$s&amp;width=%2$d&amp;height=%3$d&amp;colorscheme=%4$s&amp;show_faces=%5$d&amp;header=%6$d&amp;stream=%7$d&amp;show_border=%8$d" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width: %2$dpx; height: %3$dpx;" allowTransparency="true"></iframe>',
+			'<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/' . $location . '/sdk.js#xfbml=1&version=v2.4";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, "script", "facebook-jssdk"));</script>
+			<div class="fb-page" data-href="%1$s" data-width="%2$s" data-height="%3$s" data-small-header="%4$s" data-adapt-container-width="%5$s" data-hide-cover="%6$s" data-show-facepile="%7$s" data-show-posts="%8$s"></div>',
 			$instance['url'],
 			$instance['width'],
 			$instance['height'],
-			$instance['color_scheme'],
+			$instance['small_header'],
+			$instance['adapt_width'],
+			$instance['hide_cover'],
 			$instance['friends_faces'],
-			$instance['show_posts'],
-			$instance['show_header'],
-			$instance['show_border']
+			$instance['show_posts']
 		);
 
 		echo $args['after_widget'];

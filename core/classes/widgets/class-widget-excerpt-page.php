@@ -50,9 +50,9 @@ class Odin_Widget_Page_Excerpt extends WP_Widget {
 
 			echo '<article>';
 
-				$args['before_title']
+				echo $args['before_title'];
 				echo ( ! empty( $title ) ) ? $title : get_the_title();
-				$args['after_title']
+				echo $args['after_title'];
 
 				$args = array(
 					'numberposts'   	=> -1,
@@ -67,10 +67,10 @@ class Odin_Widget_Page_Excerpt extends WP_Widget {
 			  	$total_images = count( $attachments );
 
 				if ( ( $show_thumb == 1 ) && has_post_thumbnail() ) {
-					$post_thumbnail = get_the_post_thumbnail( $post_id, 'full', $attr => array( 'class' => 'wp-image-thumb img-responsive' ) );
+					$post_thumbnail = get_the_post_thumbnail( $post_id, 'full', $attr = array( 'class' => 'wp-image-thumb img-responsive' ) );
 				} elseif ( $total_images > 0 ) {
 					$image          = array_shift( $attachments );
-					$post_thumbnail = wp_get_attachment_image( $image, 'full' $attr => array( 'class' => 'wp-image-thumb img-responsive' ) );
+					$post_thumbnail = wp_get_attachment_image( $image, 'full', $attr = array( 'class' => 'wp-image-thumb img-responsive' ) );
 				}
 
 				if ( ! empty ( $post_thumbnail ) ) :
