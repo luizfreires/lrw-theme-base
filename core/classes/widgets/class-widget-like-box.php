@@ -156,16 +156,13 @@ class Odin_Widget_Like_Box extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
-		// set location
-		$location = str_replace( '-', '_', get_bloginfo( 'language' ) );
-
 		echo sprintf(
 			'<div id="fb-root"></div>
 			<script>(function(d, s, id) {
 			  var js, fjs = d.getElementsByTagName(s)[0];
 			  if (d.getElementById(id)) return;
 			  js = d.createElement(s); js.id = id;
-			  js.src = "//connect.facebook.net/' . $location . '/sdk.js#xfbml=1&version=v2.4";
+			  js.src = "//connect.facebook.net/' . get_locale() . '/sdk.js#xfbml=1&version=v2.4";
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, "script", "facebook-jssdk"));</script>
 			<div class="fb-page" data-href="%1$s" data-width="%2$s" data-height="%3$s" data-small-header="%4$s" data-adapt-container-width="%5$s" data-hide-cover="%6$s" data-show-facepile="%7$s" data-show-posts="%8$s"></div>',

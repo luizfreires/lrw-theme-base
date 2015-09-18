@@ -49,12 +49,11 @@ class Odin_Widget_Page_Excerpt extends WP_Widget {
 		while ( $myquery->have_posts() ) : $myquery->the_post();
 
 			echo '<article>';
-
 				echo $args['before_title'];
-				echo ( ! empty( $title ) ) ? $title : get_the_title();
+				echo '<a href="' . get_permalink() . '">' . ( ( ! empty( $title ) ) ? $title : get_the_title() ) . '</a>';
 				echo $args['after_title'];
 
-				$args = array(
+				$images = array(
 					'numberposts'   	=> -1,
 					'order'         	=> 'ASC',
 					'orderby'       	=> 'menu_order',
@@ -63,7 +62,7 @@ class Odin_Widget_Page_Excerpt extends WP_Widget {
 					'post_mime_type' 	=> 'image',
 				);
 
-			  	$attachments = get_children( $args );
+			  	$attachments = get_children( $images );
 			  	$total_images = count( $attachments );
 
 				if ( ( $show_thumb == 1 ) && has_post_thumbnail() ) {
@@ -77,11 +76,11 @@ class Odin_Widget_Page_Excerpt extends WP_Widget {
 					echo '<a class="thumbnail" href="' . get_permalink() . '">' . $post_thumbnail . '</a>';
 				endif;
 
-				echo '<div class="entry-content">' . get_the_excerpt() . '</div>';
+				echo '<div class="entry-content">' . odin_excerpt( 'excerpt', 40 ) . '</div>';
 			echo '</article><!-- #post-## -->';
 
 		endwhile;
-		wp_reset_query();
+		wp_reset_postdata();
 
 		echo $args['after_widget'];
 	}
